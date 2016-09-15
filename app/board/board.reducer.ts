@@ -1,5 +1,5 @@
 import { ActionReducer, Action } from '@ngrx/store';
-import { PLAY_O, PLAY_X, FINISH_GAME} from "../actions";
+import { PLAY_O, PLAY_X, FINISH} from "../actions";
 const initalState = [
     0, 0, 0,
     0, 0, 0,
@@ -17,7 +17,7 @@ export const boardReducer: ActionReducer<Array<number>> = (state: Array<number> 
             return reduceBoard(state, payload.row, payload.col, 1);
         case PLAY_O:
             return reduceBoard(state, payload.row, payload.col, -1);
-        case FINISH_GAME:
+        case FINISH:
             return initalState;
         default:
             return state;

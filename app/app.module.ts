@@ -9,6 +9,7 @@ import { StoreModule, combineReducers } from '@ngrx/store';
 import { AppComponent } from "./app.component";
 import { logger } from './meta-reducers/logger.meta-reducer';
 import { undoable } from './meta-reducers/undoable.meta-reducer';
+import { persister } from './meta-reducers/persister.meta-reducer';
 
 import { scoreReducer } from './score/score.reducer';
 import { ScoreComponent } from './score/score.component';
@@ -18,10 +19,13 @@ import { BoardComponent } from './board/board.component';
 import { PlayerPipe } from './board/player.pipe';
 
 
-const reducers = logger(combineReducers({
+let reducers = combineReducers({
   board: undoable(boardReducer),
   score: scoreReducer
-}));
+});
+
+reducers = logger(reducers);
+reducers = persister(reducers);
 
 @NgModule({
   declarations: [AppComponent, BoardComponent, PlayerPipe, ScoreComponent],

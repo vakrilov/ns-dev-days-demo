@@ -1,5 +1,5 @@
 import { ActionReducer, Action } from "@ngrx/store";
-import { RESET_SCORE, FINISH_GAME} from "../actions";
+import { RESET_SCORE, FINISH} from "../actions";
 
 export interface Score {
   xWins: number;
@@ -16,7 +16,7 @@ const initialState = {
 export const scoreReducer: ActionReducer<Score> =
   (score: Score = initialState, action: Action) => {
 
-    if (action.type === FINISH_GAME) {
+    if (action.type === FINISH) {
       switch (action.payload.winner) {
         case 0:
           return Object.assign({}, score, { draws: score.draws + 1 });

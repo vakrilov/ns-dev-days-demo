@@ -8,14 +8,14 @@
     <tic-board [data]="board$ | async" (action)="positionSelected($event, currentPlayer)"></tic-board>
   </grid-layout>
 
-  <button text="<" *ngIf="canUndo$ | async" (tap)="undo()" row="2" class="undo"></button>
-  <button text=">" *ngIf="canRedo$ | async" (tap)="redo()" row="2" class="redo"></button>
+  <button text="<" *ngIf="!finished && (canUndo$ | async)" (tap)="undo()" row="2" class="undo"></button>
+  <button text=">" *ngIf="!finished && (canRedo$ | async)" (tap)="redo()" row="2" class="redo"></button>
 
   <grid-layout row="3" class="board">
     <tic-score [score]="score$ | async"></tic-score>
   </grid-layout>
 
-  <grid-layout rowSpan="4" *ngIf="finished" rows="auto auto">
+  <grid-layout rowSpan="4" *ngIf="finished" rows="auto *" class="popup">
     <label [text]="winner === 0 ? 'TIE' : winner > 0 ? 'X WINS' : 'O WINS'" class="win"></label>
     <button row="1" text="new game" (tap)="finishGame()"></button>
   </grid-layout>

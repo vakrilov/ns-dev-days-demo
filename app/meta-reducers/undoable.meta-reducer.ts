@@ -1,6 +1,6 @@
 import {ActionReducer, Action} from "@ngrx/store";
 // import {UndoableState} from "../common/interfaces";
-import {UNDO, REDO} from "../actions";
+import {UNDO, REDO, FINISH} from "../actions";
 export interface UndoableState<T> {
     past: Array<T>,
     present: T,
@@ -41,6 +41,12 @@ export function undoable<T>(reducer : ActionReducer<T>) {
                     past: [ ...past, present ],
                     present: future[0],
                     future: future.slice(1)
+                };
+            case FINISH: 
+                return {
+                  past: [],
+                  present: reducer(present, action),
+                  future: []
                 };
             default:
                 // Delegate handling the action to the passed reducer

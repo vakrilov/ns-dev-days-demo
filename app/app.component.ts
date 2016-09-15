@@ -3,10 +3,10 @@ import {Observable, Subscription, BehaviorSubject} from "rxjs";
 import "rxjs/add/operator/map";
 import {Store} from '@ngrx/store';
 
-import {FINISH_GAME, PLAY_O, PLAY_X, UNDO, REDO} from "./actions";
+import {FINISH, PLAY_O, PLAY_X, UNDO, REDO} from "./actions";
 import {Score} from './score/score.reducer';
 import {checkWinner} from './board/board.reducer';
-import {UndoableState} from './undoable.metareducer';
+import {UndoableState} from './meta-reducers/undoable.meta-reducer';
 
 interface AppState {
   board: UndoableState<Array<number>>;
@@ -71,7 +71,7 @@ export class AppComponent implements OnDestroy {
   }
 
   finishGame() {
-    this.store.dispatch({ type: FINISH_GAME, payload: { winner: this.winner} });
+    this.store.dispatch({ type: FINISH, payload: { winner: this.winner} });
   }
 
   ngOnDestroy() {

@@ -64,3 +64,10 @@
   margin: 5 10 0 10;
 }
 
+.popup {
+  background-color: whitesmoke;
+  border-radius: 20;
+  border-color: lightgreen;
+  border-width: 2;
+  margin: 16;
+}
