@@ -1,14 +1,13 @@
 import {ActionReducer, Action} from "@ngrx/store";
 // import {UndoableState} from "../common/interfaces";
-
+import {UNDO, REDO} from "../actions";
 export interface UndoableState<T> {
     past: Array<T>,
     present: T,
     future: Array<T>
 }
 
-export const UNDO = '_UNDO_';
-export const REDO = '_REDO_';
+
 
 //based on Rob Wormald's example http://plnkr.co/edit/UnU1wnFcausVFfEP2RGD?p=preview
 /*

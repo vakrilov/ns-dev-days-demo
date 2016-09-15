@@ -1,8 +1,6 @@
 <ActionBar title="TIC TAC TOE"></ActionBar>
 
 <grid-layout rows="auto, auto, auto, auto, *">
-  <!--<button text="new game" (tap)="reset()"></button>-->
-
   <label row="0" text="NEXT" class="next-header"></label>
   <label row="1" [text]="currentPlayer ? 'X' : 'O'" class="next"></label>
 
@@ -17,7 +15,10 @@
     <tic-score [score]="score$ | async"></tic-score>
   </grid-layout>
 
-  <label row="4" colSpan="2" *ngIf="winner" [text]="winner > 0 ? 'X WINS' : 'O WINS'" class="win"></label>
+  <grid-layout rowSpan="4" *ngIf="finished" rows="auto auto">
+    <label [text]="winner === 0 ? 'TIE' : winner > 0 ? 'X WINS' : 'O WINS'" class="win"></label>
+    <button row="1" text="new game" (tap)="finishGame()"></button>
+  </grid-layout>
 
   <ns-dock-monitor screenCover="0.5"></ns-dock-monitor>
 </grid-layout>

@@ -1,7 +1,5 @@
 import { ActionReducer, Action } from "@ngrx/store";
-
-export const FINISH_GAME = "FINISH_GAME";
-export const RESET_SCORE = "RESET_SCORE";
+import { RESET_SCORE, FINISH_GAME} from "../actions";
 
 export interface Score {
   xWins: number;

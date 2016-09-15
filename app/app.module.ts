@@ -4,11 +4,11 @@ import { NativeScriptDevToolsMonitors } from "ngrx-devtools-nativescript";
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { NgModule } from "@angular/core";
-import { StoreModule } from '@ngrx/store';
+import { StoreModule, combineReducers } from '@ngrx/store';
 
 import { AppComponent } from "./app.component";
-import { logger } from './logger.metareducer';
-import { undoable } from './undoable.metareducer';
+import { logger } from './meta-reducers/logger.meta-reducer';
+import { undoable } from './meta-reducers/undoable.meta-reducer';
 
 import { scoreReducer } from './score/score.reducer';
 import { ScoreComponent } from './score/score.component';
@@ -18,10 +18,10 @@ import { BoardComponent } from './board/board.component';
 import { PlayerPipe } from './board/player.pipe';
 
 
-const reducers = {
-  board: logger(undoable(boardReducer)),
-  score: logger(scoreReducer)
-};
+const reducers = logger(combineReducers({
+  board: undoable(boardReducer),
+  score: scoreReducer
+}));
 
 @NgModule({
   declarations: [AppComponent, BoardComponent, PlayerPipe, ScoreComponent],
