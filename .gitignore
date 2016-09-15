@@ -1,0 +1,12 @@
+node_modules
+platforms
+typings
+lib
+hooks
+**/*.js
+**/*.js.map
+*.tgz
+.DC_Store
+
+*.d.ts
+!global.d.ts

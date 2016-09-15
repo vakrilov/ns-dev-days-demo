@@ -1,0 +1,23 @@
+<ActionBar title="TIC TAC TOE"></ActionBar>
+
+<grid-layout rows="auto, auto, auto, auto, *">
+  <!--<button text="new game" (tap)="reset()"></button>-->
+
+  <label row="0" text="NEXT" class="next-header"></label>
+  <label row="1" [text]="currentPlayer ? 'X' : 'O'" class="next"></label>
+
+  <grid-layout row="2" class="board">
+    <tic-board [data]="board$ | async" (action)="positionSelected($event, currentPlayer)"></tic-board>
+  </grid-layout>
+
+  <button text="<" *ngIf="canUndo$ | async" (tap)="undo()" row="2" class="undo"></button>
+  <button text=">" *ngIf="canRedo$ | async" (tap)="redo()" row="2" class="redo"></button>
+
+  <grid-layout row="3" class="board">
+    <tic-score [score]="score$ | async"></tic-score>
+  </grid-layout>
+
+  <label row="4" colSpan="2" *ngIf="winner" [text]="winner > 0 ? 'X WINS' : 'O WINS'" class="win"></label>
+
+  <ns-dock-monitor screenCover="0.5"></ns-dock-monitor>
+</grid-layout>
