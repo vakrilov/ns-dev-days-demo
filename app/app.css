@@ -3,37 +3,28 @@
     vertical-align: top;
 }
 
-.win {
-    font-size: 56;
-    font-weight: bold;
-    horizontal-align: center;
-}
-
 .tile {
     border-width: 1;
     border-color: gray;
     font-weight: bold;
 }
 
-.undo {
-  horizontal-align: left;
+.undo, .redo {
   vertical-align: center;
   font-family: monospace;
   font-weight: bold;
   font-size: 20;
   width: 70;
   height: 70;
+}
+
+.undo {
+  horizontal-align: left;
   margin-left: 16;
 }
 
 .redo {
   horizontal-align: right;
-  vertical-align: center;
-  font-family: monospace;
-  font-weight: bold;
-  font-size: 20;
-  width: 70;
-  height: 70;
   margin-right: 16;
 }
 
@@ -70,4 +61,10 @@
   border-color: lightgreen;
   border-width: 2;
   margin: 16;
+}
+
+.win {
+    font-size: 56;
+    font-weight: bold;
+    horizontal-align: center;
 }

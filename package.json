@@ -7,7 +7,14 @@
     "id": "org.nativescript.tictactoe",
     "tns-android": {
       "version": "2.3.0"
+    },
+    "tns-ios": {
+      "version": "2.2.1"
     }
+  },
+  "scripts": {
+    "test": "tsc -p . && mocha app/**/*.spec.js",
+    "test-watch": "tsc -p . -w & mocha app/**/*.spec.js -w"
   },
   "dependencies": {
     "@angular/common": "2.0.0-rc.5",
@@ -20,7 +27,7 @@
     "@ngrx/store": "2.1.2",
     "@ngrx/store-devtools": "3.0.0",
     "nativescript-angular": "0.4.0",
-    "ngrx-devtools-nativescript": "^0.3.0",
+    "ngrx-devtools-nativescript": "^0.3.1",
     "reflect-metadata": "^0.1.5",
     "rxjs": "5.0.0-beta.6",
     "tns-core-modules": "2.2.1",
@@ -30,7 +37,9 @@
     "babel-traverse": "6.15.0",
     "babel-types": "6.15.0",
     "babylon": "6.9.1",
+    "chai": "^3.5.0",
     "lazy": "1.0.11",
+    "mocha": "^3.0.2",
     "nativescript-dev-typescript": "^0.3.2",
     "typescript": "^1.8.10"
   }

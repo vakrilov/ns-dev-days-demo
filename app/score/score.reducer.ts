@@ -1,5 +1,5 @@
 import { ActionReducer, Action } from "@ngrx/store";
-import { RESET_SCORE, FINISH} from "../actions";
+import { RESET_SCORE, FINISH } from "../actions";
 
 export interface Score {
   xWins: number;
