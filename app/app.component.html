@@ -5,7 +5,7 @@
   <label row="1" [text]="currentPlayer ? 'X' : 'O'" class="next"></label>
 
   <grid-layout row="2" class="board">
-    <tic-board [data]="board$ | async" (action)="positionSelected($event, currentPlayer)"></tic-board>
+    <tic-board [board]="board$ | async" (action)="positionSelected($event, currentPlayer)"></tic-board>
   </grid-layout>
 
   <button text="<" *ngIf="!finished && (canUndo$ | async)" (tap)="undo()" row="2" class="undo"></button>

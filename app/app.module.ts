@@ -20,14 +20,12 @@ import { PlayerPipe } from './board/player.pipe';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { NativeScriptDevToolsMonitors } from "ngrx-devtools-nativescript";
 
-
-
 let rootReducer = combineReducers({
   board: undoable(boardReducer),
   score: scoreReducer
 });
 
-// rootReducer = logger(rootReducer);
+rootReducer = logger(rootReducer);
 // rootReducer = persister(rootReducer, true);
 
 @NgModule({

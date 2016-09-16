@@ -51,14 +51,14 @@ export class AppComponent implements OnDestroy {
     this.subs.push(finished$.subscribe((val) => this.finished = val));
   }
 
-  positionSelected(payload: { row: number, col: number }, player: boolean) {
+  positionSelected(position: number) {
     if (this.winner) {
       return;
     }
 
     this.store.dispatch({
-      type: player ? PLAY_X : PLAY_O,
-      payload: payload
+      type: this.currentPlayer ? PLAY_X : PLAY_O,
+      payload: position
     });
   }
 
