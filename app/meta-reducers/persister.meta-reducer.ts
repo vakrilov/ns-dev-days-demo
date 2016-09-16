@@ -12,8 +12,8 @@ function loadState() {
   }
 }
 
-export const persister = reducer => {
-  const loadedState = loadState();
+export const persister = (reducer, initialLoad: boolean) => {
+  const loadedState = initialLoad ? loadState() : undefined;
   return function (state = loadedState, action: any) {
     const nextState = reducer(state, action);
     saveState(nextState);
