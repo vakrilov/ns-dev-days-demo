@@ -17,7 +17,7 @@
 
   <grid-layout rowSpan="4" *ngIf="finished" rows="auto *" class="popup">
     <label [text]="winner === 0 ? 'TIE' : winner > 0 ? 'X WINS' : 'O WINS'" class="win"></label>
-    <button row="1" text="new game" (tap)="finishGame()"></button>
+    <button row="1" text="NEW GAME" (tap)="finishGame()" class="win-btn"></button>
   </grid-layout>
 
   <ns-dock-monitor screenCover="0.5"></ns-dock-monitor>

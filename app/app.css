@@ -68,3 +68,9 @@
     font-weight: bold;
     horizontal-align: center;
 }
+
+.win-btn {
+    horizontal-align: center;    
+    vertical-align: center;
+    font-size: 32;    
+}
