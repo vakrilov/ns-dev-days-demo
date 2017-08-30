@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from 
 @Component({
   selector: "tic-board",
   template: `
-<wrap-layout itemWidth="50" itemHeight="50" width="150" height="150">
+<wrap-layout width="150" height="150">
   <button class="tile"
     *ngFor="let val of board; let i = index" 
     [text]="val | player" 

@@ -1,11 +1,16 @@
 import { ActionReducer, Action } from '@ngrx/store';
-import { PLAY_O, PLAY_X, FINISH} from "../actions";
+import { PLAY_O, PLAY_X, FINISH } from "../actions";
 const initialState = [
   0, 0, 0,
   0, 0, 0,
   0, 0, 0];
 
-export function boardReducer(state: Array<number> = initialState, action: Action): Array<number> {
+interface PayloadAction extends Action {
+  type: string;
+  payload?: any;
+}
+
+export function boardReducer(state: Array<number> = initialState, action: PayloadAction): Array<number> {
   switch (action.type) {
     case PLAY_X:
       return setTile(state, action.payload, 1);

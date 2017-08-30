@@ -1,5 +1,5 @@
 // this import should be first in order to load some required settings (like globals and reflect-metadata)
-import { NativeScriptModule, platformNativeScriptDynamic } from "nativescript-angular/platform";
+import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { NgModule } from "@angular/core";
 
 // NGRX store
@@ -20,12 +20,11 @@ import { PlayerPipe } from './board/player.pipe';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { NativeScriptDevToolsMonitors } from "ngrx-devtools-nativescript";
 
-let rootReducer = combineReducers({
+
+let rootReducer = {
   board: undoable(boardReducer),
   score: scoreReducer
-});
-
-rootReducer = logger(rootReducer);
+};
 // rootReducer = persister(rootReducer, true);
 
 @NgModule({
@@ -33,11 +32,12 @@ rootReducer = logger(rootReducer);
   imports: [
     NativeScriptModule,
     NativeScriptDevToolsMonitors,
-    StoreModule.provideStore(rootReducer),
-    StoreDevtoolsModule.instrumentStore()
+    StoreModule.forRoot({
+      board: undoable(boardReducer),
+      score: scoreReducer
+    }, logger),
+    StoreDevtoolsModule.instrument()
   ],
   bootstrap: [AppComponent]
 })
-class AppModule { };
-
-platformNativeScriptDynamic().bootstrapModule(AppModule);
+export class AppModule { };

@@ -1,12 +1,12 @@
-import {Component, OnDestroy} from "@angular/core";
-import {Observable, Subscription, BehaviorSubject} from "rxjs";
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Observable, Subscription, BehaviorSubject } from "rxjs";
 import "rxjs/add/operator/map";
-import {Store} from '@ngrx/store';
+import { Store } from '@ngrx/store';
 
-import {FINISH, PLAY_O, PLAY_X, UNDO, REDO} from "./actions";
-import {Score} from './score/score.reducer';
-import {checkWinner} from './board/board.reducer';
-import {UndoableState} from './meta-reducers/undoable.meta-reducer';
+import { FINISH, PLAY_O, PLAY_X, UNDO, REDO } from "./actions";
+import { Score } from './score/score.reducer';
+import { checkWinner } from './board/board.reducer';
+import { UndoableState } from './meta-reducers/undoable.meta-reducer';
 
 interface AppState {
   board: UndoableState<Array<number>>;
@@ -17,7 +17,7 @@ interface AppState {
   selector: "my-app",
   templateUrl: "./app.component.html",
 })
-export class AppComponent implements OnDestroy {
+export class AppComponent implements OnInit, OnDestroy {
   board$: Observable<Array<number>>;
   score$: Observable<Score>;
   canUndo$: Observable<boolean>;
@@ -29,12 +29,14 @@ export class AppComponent implements OnDestroy {
 
   subs: Array<Subscription> = [];
 
-  constructor(public store: Store<AppState>) {
-    this.board$ = store.select(s => s.board.present);
-    this.score$ = store.select(s => s.score);
+  constructor(public store: Store<AppState>) { }
 
-    this.canUndo$ = store.select(s => s.board.past.length > 0);
-    this.canRedo$ = store.select(s => s.board.future.length > 0);
+  ngOnInit() {
+    this.board$ = this.store.select(s => s.board.present);
+    this.score$ = this.store.select(s => s.score);
+
+    this.canUndo$ = this.store.select(s => s.board.past.length > 0);
+    this.canRedo$ = this.store.select(s => s.board.future.length > 0);
 
     this.subs.push(
       this.board$
@@ -71,7 +73,7 @@ export class AppComponent implements OnDestroy {
   }
 
   finishGame() {
-    this.store.dispatch({ type: FINISH, payload: { winner: this.winner} });
+    this.store.dispatch({ type: FINISH, payload: { winner: this.winner } });
   }
 
   ngOnDestroy() {

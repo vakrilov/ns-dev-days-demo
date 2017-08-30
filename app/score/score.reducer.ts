@@ -1,5 +1,9 @@
 import { ActionReducer, Action } from "@ngrx/store";
 import { RESET_SCORE, FINISH } from "../actions";
+interface PayloadAction extends Action {
+  type: string;
+  payload?: any;
+}
 
 export interface Score {
   xWins: number;
@@ -13,7 +17,7 @@ const initialState = {
   draws: 0
 };
 
-export function scoreReducer(score: Score = initialState, action: Action): Score {
+export function scoreReducer(score: Score = initialState, action: PayloadAction): Score {
   if (action.type === FINISH) {
     switch (action.payload.winner) {
       case 0:
